@@ -1,0 +1,28 @@
+services:
+  - type: web
+    name: ladybug-bot
+    runtime: node
+    plan: free
+    buildCommand: npm install
+    startCommand: node start.js
+    healthCheckPath: /
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: BOT_REPO
+        value: https://github.com/dev-modder/Ladybug-Mini.git
+        # ── Required: paste your session string from https://knight-bot-paircode.onrender.com/
+      - key: SESSION_ID
+        sync: false
+        # ── Optional: your WhatsApp number without + (e.g. 263786831091)
+      - key: OWNER_NUMBER
+        sync: false
+        # ── Optional: your name
+      - key: OWNER_NAME
+        sync: false
+        # ── Optional: custom bot name
+      - key: BOT_NAME
+        sync: false
+        # ── Optional: command prefix (default: .)
+      - key: PREFIX
+        sync: false

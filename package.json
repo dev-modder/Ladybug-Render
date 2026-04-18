@@ -1,0 +1,15 @@
+{
+  "name": "ladybug-render-launcher",
+  "version": "1.0.0",
+  "description": "Render.com launcher wrapper for Ladybug Bot Mini (WhatsApp MD bot)",
+  "main": "start.js",
+  "scripts": {
+    "start": "node start.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {},
+  "keywords": ["whatsapp", "bot", "baileys", "render"],
+  "license": "MIT"
+}
