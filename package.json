@@ -1,15 +1,16 @@
 {
   "name": "ladybug-render-launcher",
-  "version": "1.0.0",
-  "description": "Render.com launcher wrapper for Ladybug Bot Mini (WhatsApp MD bot)",
+  "version": "2.0.0",
+  "description": "Enhanced Render.com VPS launcher for Ladybug Bot Mini (WhatsApp MD bot)",
   "main": "start.js",
   "scripts": {
-    "start": "node start.js"
+    "start": "node start.js",
+    "start:pairing": "cd pairing-site && node server.js"
   },
   "engines": {
     "node": ">=18"
   },
   "dependencies": {},
-  "keywords": ["whatsapp", "bot", "baileys", "render"],
+  "keywords": ["whatsapp", "bot", "baileys", "render", "ladybug"],
   "license": "MIT"
 }

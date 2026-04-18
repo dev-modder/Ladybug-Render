@@ -1,28 +1,70 @@
+## ──────────────────────────────────────────────────────────
+##  🐞 LADYBUG BOT — Render.com Blueprint
+##  Two services:
+##    1. ladybug-bot        — the actual WhatsApp bot
+##    2. ladybug-pairing    — session ID generator website
+## ──────────────────────────────────────────────────────────
+
 services:
+
+  # ── 1. WhatsApp Bot ──────────────────────────────────────
   - type: web
     name: ladybug-bot
     runtime: node
+    rootDir: .
     plan: free
     buildCommand: npm install
     startCommand: node start.js
-    healthCheckPath: /
+    healthCheckPath: /api/status
     envVars:
       - key: NODE_ENV
         value: production
+
+      # ── Bot source (change to your fork URL if needed)
       - key: BOT_REPO
         value: https://github.com/dev-modder/Ladybug-Mini.git
-        # ── Required: paste your session string from https://knight-bot-paircode.onrender.com/
+
+      - key: BOT_BRANCH
+        value: main
+
+      # ── Your session string from the pairing site
       - key: SESSION_ID
         sync: false
-        # ── Optional: your WhatsApp number without + (e.g. 263786831091)
+
+      # ── Your WhatsApp number(s) without + (comma-separated for multiple)
       - key: OWNER_NUMBER
         sync: false
-        # ── Optional: your name
+
+      # ── Your name(s) comma-separated
       - key: OWNER_NAME
         sync: false
-        # ── Optional: custom bot name
+
+      # ── Custom bot name (optional)
       - key: BOT_NAME
         sync: false
-        # ── Optional: command prefix (default: .)
+
+      # ── Command prefix (default: .)
       - key: PREFIX
         sync: false
+
+      # ── Set to 'false' to disable auto-updating bot on restart
+      - key: AUTO_UPDATE
+        value: "true"
+
+      # ── Optional API keys (bot features that need them)
+      - key: OPENAI_API_KEY
+        sync: false
+      - key: DEEPAI_API_KEY
+        sync: false
+      - key: REMOVE_BG_API_KEY
+        sync: false
+
+  # ── 2. Pairing Site ──────────────────────────────────────
+  - type: web
+    name: ladybug-pairing
+    runtime: node
+    rootDir: pairing-site
+    plan: free
+    buildCommand: npm install
+    startCommand: node server.js
+    healthCheckPath: /
